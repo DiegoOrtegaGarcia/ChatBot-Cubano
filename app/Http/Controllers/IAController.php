@@ -32,7 +32,6 @@ class IAController extends Controller
                 **FORMATO DE RESPUESTAS (CRÍTICO):**
                 - Todas las respuestas deben ser HTML válido y seguro para React
                 - NO uses: <div>, <script>, <style>, eventos JavaScript (onclick, etc.)
-                - ENVUELVE TODO el contenido en: <p class='flex flex-col'></p>
                 - Para subtítulos usa: <h3 class='font-bold underline'>Título</h3>
                 - Para listas: <ul class='list-disc ml-4'>, <ol class='list-decimal ml-4'>
                 - Para ítems: <li class='mb-1'>elemento</li>
