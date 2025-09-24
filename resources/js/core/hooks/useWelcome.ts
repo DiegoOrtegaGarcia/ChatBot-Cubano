@@ -101,6 +101,9 @@ export const useWelcome = () => {
             setIsThinking(true)
             setError(null)
 
+            setBotResponse("")
+            setDisplayText("")
+
             const userMessage : Message = {
                 role: "user",
                 messages: textMessage,
@@ -209,8 +212,13 @@ export const useWelcome = () => {
         return () => {
             clearInterval(typingInterval);
         };
-    }, []);
+    }, [botResponse]);
 
+    useEffect(()=>{
+        if (isCurrentViewFollowRef.current) {
+                    adjustViewMessages();
+                }
+    },[isThinking])
     return{
         error,setError,messagesContainer,messages,messageElements,isThinking,sanitizedDisplayText,isCurrentViewFollow,handleTextContainerView,handleSubmit,setTextMessage,textMessage,textareaRef,isSubmitDisabled
     }

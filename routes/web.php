@@ -10,4 +10,4 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::post("/roselia",[IAController::class , "processMessage"]);
+Route::post("/roselia", [IAController::class, "processMessage"])->middleware("ratelimit.chat:10,1");
