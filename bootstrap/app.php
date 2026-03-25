@@ -15,9 +15,16 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
+            \Illuminate\Http\Middleware\HandleCors::class,
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+        
+        // Exclude CSRF verification for API-like routes
+        $middleware->validateCsrfTokens(except: [
+            'roselia',
+        ]);
+        
          $middleware->alias([
             'ratelimit.chat' => RateLimitChat::class,
         ]);
