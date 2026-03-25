@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chatbot-cubano:latest
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: local
+      APP_DEBUG: 'true'
+      APP_KEY: base64:RandomKey
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/database/database.sqlite
+      API_IA_KEY: ${API_IA_KEY}
+    volumes:
+      - .:/var/www/html
+      - ./database:/var/www/html/database
+    working_dir: /var/www/html
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  # Si prefieres MySQL en lugar de SQLite, descomenta estas líneas y adapta .env:
+  # db:
+  #   image: mysql:8.0
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: secret
+  #     MYSQL_DATABASE: chatbot
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: secret
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+
+volumes:
+  db_data: {}

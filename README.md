@@ -160,6 +160,37 @@ headers: {
 $middleware->validateCsrfTokens(except: ['roselia']);
 ```
 
+## ✅ Dockerización rápida
+
+Hecho: ahora tienes `Dockerfile`, `docker-compose.yml` y `.dockerignore` en la raíz.
+
+### 1) Crea el contenedor
+```bash
+cd c:\Users\lll\Proyectos\ChatBot-Cubano
+docker compose up -d --build
+```
+
+### 2) Comprueba app
+- Navega: http://localhost:8000
+- Revisa logs: `docker compose logs -f app`
+
+### 3) Primer setup (solo la 1ª vez)
+```bash
+docker compose exec app php artisan migrate
+```
+
+### 4) Variables de entorno
+- Crea `.env.local` o edita `.env` (con `API_IA_KEY` y otros valores)
+- Si necesitas MySQL, activa servicio `db` comentado en `docker-compose.yml`.
+
+### 5) Parar/arrancar contenedor
+```bash
+docker compose down
+docker compose up -d
+```
+
+---
+
 ## 🐞 Solución de errores comunes
 
 ### 500 con error API
