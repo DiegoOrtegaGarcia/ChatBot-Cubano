@@ -12,7 +12,7 @@ class ChatService
 
     public function __construct()
     {
-        $this->model = "gpt-4o-mini";
+        $this->model = "meta-llama/llama-3.2-3b-instruct";
         $this->systemPrompt = [
             "role" => "system",
             "content" => "Eres Yasmani, un asistente virtual cubano útil y amable.
